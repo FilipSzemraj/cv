@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filip Szemraj - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="translations-en.js"></script>
+    <script src="translations-pl.js"></script>
+    <script src="language-switcher.js"></script>
+    <style>
+        :root {
+            --primary-color: #1e293b; /* Dark Slate */
+            --accent-color: rgba(37, 99, 235, 0.5); /* Royal Blue */
+            --text-color: #334155; /* Slate Gray */
+            --light-text: #64748b;
+            --bg-color: #ffffff;
+            --section-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.45; color: var(--text-color); background-color: #f1f5f9; font-size: 13.5px; }
+
+        .container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: var(--bg-color);
+            padding: 35px 45px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* HEADER SECTION */
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 { font-size: 26px; color: var(--primary-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .header-left h2 { font-size: 15px; color: var(--accent-color); font-weight: 600; }
+
+        .contact-info { list-style: none; font-size: 12.5px; text-align: right; }
+        .contact-info li { margin-bottom: 4px; display: flex; align-items: center; justify-content: flex-end; }
+        .contact-info li span.icon { margin-right: 8px; font-size: 14px; width: 16px; text-align: center; color: var(--text-color); }
+        .contact-info a { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .contact-info a:hover { color: var(--accent-color); }
+
+        /* INTRO GRID: Summary + Education side-by-side */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr; /* 65% Summary, 35% Education */
+            gap: 25px;
+            //margin-bottom: 25px;
+            //background: black;
+            //border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .summary-text { font-size: 13px; color: #475569; text-align: justify; line-height: 1.6; }
+
+        .education-box { background: var(--section-bg); padding: 12px 15px; border-radius: 6px; border-left: 3px solid var(--accent-color); }
+        .edu-item { margin-bottom: 10px; }
+        .edu-item:last-child { margin-bottom: 0; }
+        .edu-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--light-text); font-weight: 600; margin-bottom: 2px; }
+        .edu-school { font-weight: 700; color: var(--primary-color); font-size: 12px; display: block; }
+        .edu-detail { font-size: 11px; color: #475569; display: block; }
+
+        /* SECTIONS GENERAL */
+        section { margin-bottom: 22px; }
+        .section-title {
+            font-size: 13px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+        }
+
+        /* ENTRIES (Experience/Projects) */
+        .entry { margin-bottom: 18px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .entry-title a { font-weight: 700; font-size: 14.5px; color: var(--primary-color); text-decoration: none;}
+        .entry-title { font-weight: 700; font-size: 14.5px; color: var(--primary-color); text-decoration: none;}
+        .entry-company { font-style: italic; font-size: 14.5px; color: var(--accent-color); font-weight: 600; }
+        .entry-meta { font-size: 11.5px; color: var(--light-text); font-weight: 500; }
+
+        .entry p { margin-bottom: 6px; font-size: 13px; text-align: justify; }
+
+        ul.details { list-style-type: disc; margin-left: 16px; margin-top: 4px; margin-bottom: 6px; }
+        ul.details li { margin-bottom: 3px; color: #475569; font-size: 13px; }
+
+        /* TAGS (BUTTONS) */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            font-weight: 500;
+        }
+        .tag-job{
+            margin: auto;
+            background: transparent;
+            //border: 1px solid var(--accent-color);
+            //color: #f1f5f9;
+        }
+
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 30px; }
+        .skill-category { margin-bottom: 5px; }
+        .skill-category strong { display: block; color: var(--primary-color); font-size: 14.5px; margin-bottom: 3px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 2px; }
+        .skill-category span { color: #475569; font-size: 13px; display: block; line-height: 1.5; }
+
+        /* PORTFOLIO & CERTS */
+        .portfolio-box {
+            background: var(--section-bg);
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .portfolio-text { font-size: 13px; color: #475569; max-width: 60%; }
+        .portfolio-links { text-align: right; }
+        .portfolio-links a { display: block; color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 12.5px; margin-bottom: 2px; }
+        .portfolio-links a:hover { text-decoration: underline; }
+
+        .certs-list { list-style: none; display: flex; flex-wrap: wrap; gap: 15px; }
+        .certs-list li { font-size: 13px; color: #475569; display: flex; align-items: center;}
+        .certs-list a { text-decoration:none; color: #475569 }
+        .certs-list strong { margin-right: 6px; text-decoration: underline; }
+        .certs-list span { text-decoration: none; }
+        .certs-list li::before { content: "•"; color: var(--accent-color); margin-right: 6px; font-weight: bold; }
+
+        @media print {
+            body { background-color: white; -webkit-print-color-adjust: exact; }
+            .container { width: 100%; max-width: 100%; box-shadow: none; margin: 0; padding: 0; }
+            .entry {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .page-break-before {
+                break-before: page;
+                page-break-before: always;
+            }
+            @page { margin: 1cm; size: A4; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-left">
+            <h1>Filip Szemraj</h1>
+            <h2 data-i18n="header.title">Software Developer</h2>
+        </div>
+        <ul class="contact-info">
+            <li><span class="icon"><i class="fa-solid fa-location-dot"></i></span> <span data-i18n="header.location">Bydgoszcz, Poland</span></li>
+            <li><span class="icon"><i class="fa-solid fa-phone"></i></span> +48 733 359 559</li>
+            <li><span class="icon"><i class="fa-solid fa-envelope"></i></span> <a href="mailto:filip.szemraj@onet.pl">filip.szemraj@onet.pl</a></li>
+            <li><span class="icon"><i class="fa-brands fa-github"></i></span> <a href="https://github.com/FilipSzemraj" target="_blank">github.com/FilipSzemraj</a></li>
+            <li><span class="icon"><i class="fa-brands fa-linkedin"></i></span> <a href="https://linkedin.com/in/filip-szemraj" target="_blank">linkedin.com/in/filip-szemraj</a></li>
+        </ul>
+    </header>
+
+    <div class="intro-grid">
+        <div class="summary-text" data-i18n="summary">
+            Software developer with a strong interest in distributed and scalable systems, which began with my engineering thesis and has been deepening through professional work and deliberate self-study. Experienced in full-stack Java/Angular development, currently focusing on architecture patterns (DDD, Event-Driven) and frontend scalability strategies, including monorepos with low coupling and well-defined module boundaries.
+        </div>
+        <div class="education-box">
+            <!--<div class="edu-item">
+                <div class="edu-header" data-i18n="education.period">09.2021 – 02.2025</div>
+                <span class="edu-school" data-i18n="education.school">Politechnika Świętokrzyska</span>
+                <span class="edu-detail" data-i18n="education.detail">Informatyka (Teleinformatyka)</span>
+            </div>
+            <div class="edu-item" style="margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+                <div class="edu-header" data-i18n="education.period">09.2017 – 06.2021</div>
+                <span class="edu-school" data-i18n="education.school">Technikum nr. 3 (Ostrowiec Św.)</span>
+                <span class="edu-detail" data-i18n="education.detail">Internship: Teva Operations Poland</span>
+            </div>-->
+        </div>
+    </div>
+
+    <section id="experience">
+        <h3 class="section-title" data-i18n="sections.experience">Professional Experience</h3>
+        <div class="entry">
+            <div class="entry-header">
+                <div><span class="entry-title" data-i18n="experience.title">Full Stack Developer</span><span class="entry-company"> · KAELMO</span></div>
+                <span class="entry-meta" data-i18n="experience.period">Mar 2025 – Present</span>
+            </div>
+            <ul class="details">
+                <li data-i18n="experience.detail.0">Started as a Junior Developer responsible for maintaining and refactoring an existing Angular codebase and implementing feature improvements in the Java backend.</li>
+                <li data-i18n="experience.detail.1">Gradually shifted focus to mobile development using Ionic and took responsibility for frontend architecture decisions.</li>
+                <li data-i18n="experience.detail.2">Currently doing a refactor to extract business logic into reusable libraries within an Nx monorepo.</li>
+            </ul>
+            <div class="tags-container">
+                <span class="tag">Java</span> <span class="tag">Spring Boot</span> <span class="tag">Angular</span> <span class="tag">TypeScript</span> <span class="tag">RxJs</span> <span class="tag">Ionic</span> <span class="tag">Git</span> <span class="tag">Linux</span> <span class="tag">Feature Toggles</span> <span class="tag">Liquibase</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h3 class="section-title" data-i18n="sections.projects">Key Projects</h3>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span  class="entry-title"><a data-i18n="project.title" href="https://github.com/FilipSzemraj/isr-platform"></a></span>
+                <span class="entry-meta" data-i18n="project.period">Feb 2025 – Present</span>
+            </div>
+            <p data-i18n="project.paragraph.0">
+                I started this project with the goal of building a multitenant platform based on Incremental Static Regeneration (ISR). I designed an infrastructure with an Nginx gateway acting as a proxy: in the main scenario it serves cached static files directly from a CDN, while also forwarding REST API requests to a Spring Boot instance.
+            </p>
+            <p data-i18n="project.paragraph.1">
+                The platform includes an orchestration mechanism that can trigger regeneration of tenant content. In the happy path, when an administrator updates content, scaled-to-zero Node-based Angular SSR instances are started to generate new static files, which are then pushed to the CDN by the orchestrator. All components are containerized.
+            </p>
+            <p data-i18n="project.paragraph.2">
+                Later, I came up on Domain-Driven Design (DDD) and reconsidered the goal: instead, I now focus on creating the first platform module covering flash-sale–type logic for the frontends, maybe converting it to SaaS product. I want this module to be DDD-based to avoid costly design mistakes.
+            </p>
+            <p data-i18n="project.paragraph.3">
+                This project also became the foundation for a monorepo approach in my company. I learned and validated the shared-dependencies concept here, proposed it as a solution, and it is now used in a project that I currently lead.
+            </p>
+            <div class="tags-container">
+                <span class="tag">Java</span> <span class="tag">Spring Boot</span> <span class="tag">Docker</span> <span class="tag">Nx</span> <span class="tag">Nginx</span> <span class="tag">DDD</span><span class="tag">Angular</span>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title"><a data-i18n="project.title"></a></span>
+                <span class="tag tag-job" data-i18n="skills.jobRelated">Kaelmo related</span>
+                <span class="entry-meta" data-i18n="project.period">Nov 2025 – Present</span>
+            </div>
+            <p data-i18n="project.paragraph.0">
+                Extracting business logic into reusable libraries within an Angular monorepo to migrate existing applications and standardize the development of future instances and the maintenance of current applications across the company ecosystem.
+            </p>
+            <div class="tags-container">
+                <span class="tag">Angular</span> <span class="tag">Nx</span> <span class="tag">SignalStore</span> <span class="tag">RxJs</span> <span class="tag">Module Federation</span> <span class="tag">Ionic</span>
+            </div>
+        </div>
+
+        <div class="entry page-break-before">
+            <div class="entry-header">
+                <span class="entry-title"><a data-i18n="project.title"></a></span>
+                <span class="tag tag-job" data-i18n="skills.jobRelated">Kaelmo related</span>
+                <span class="entry-meta" data-i18n="project.period">Jun 2025 – Jul 2025</span>
+            </div>
+            <p data-i18n="project.paragraph.0">
+                Extending the full-cycle activity tracking integration. Implemented a thread-safe elastic pool of HTTP clients using ReentrantLock and leveraged Swagger Codegen for API consistency.
+            </p>
+            <div class="tags-container">
+                <span class="tag">Java</span> <span class="tag">Spring Boot</span> <span class="tag">Angular</span> <span class="tag">Ionic</span> <span class="tag">Swagger Codegen</span> <span class="tag">MariaDB</span> <span class="tag">SQL</span>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title"><a data-i18n="project.title" href="https://github.com/FilipSzemraj/blockchain-biz-secure"></a></span>
+                <span class="entry-meta" data-i18n="project.period">Oct 2024 – Feb 2025</span>
+            </div>
+            <p data-i18n="project.paragraph.0">
+                Built a private permissioned blockchain consortium (Hyperledger Fabric) to automate cash flow and ensure goods provenance. Implemented Smart Contracts, MSP, Raft consensus, and a decentralized web application.
+            </p>
+            <div class="tags-container">
+                <span class="tag">Hyperledger Fabric</span> <span class="tag">Smart Contracts (Chaincode)</span> <span class="tag">Java</span> <span class="tag">React</span> <span class="tag">Docker</span> <span class="tag">REST API</span> <span class="tag">gRPC</span> <span class="tag">Bash</span> <span class="tag">JWT</span> <span class="tag">PKI</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h3 class="section-title" data-i18n="sections.skills">Technical Skills</h3>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <strong data-i18n="skill.title">Languages & Frameworks</strong>
+                <span data-i18n="skill.content">Java, Spring Boot, Angular, TypeScript, Ionic, RxJs, SignalStore, Hibernate, SQL, React.</span>
+            </div>
+            <div class="skill-category">
+                <strong data-i18n="skill.title">Architecture & Concepts</strong>
+                <span data-i18n="skill.content">REST, DDD, CQRS, Event-Driven Architecture, Microservices, Monorepo (Nx), Module Federation.</span>
+            </div>
+            <div class="skill-category">
+                <strong data-i18n="skill.title">DevOps & Scripting</strong>
+                <span data-i18n="skill.content">Docker, Nginx, Git, Linux, Bash, Python, Liquibase, Swagger Codegen.</span>
+            </div>
+            <div class="skill-category">
+                <strong data-i18n="skill.title">Blockchain & Security</strong>
+                <span data-i18n="skill.content">Hyperledger Fabric, Smart Contracts, Consensus Algorithms (Raft), PKI, JWT, OAuth2.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" style="margin-bottom: 20px;">
+        <h3 class="section-title" data-i18n="sections.certifications">Certifications</h3>
+        <ul class="certs-list">
+<!--            <a><strong data-i18n="cert.name">...</strong> <span data-i18n="cert.year">...</span></a>-->
+<!--            <a><strong data-i18n="cert.name">...</strong> <span data-i18n="cert.year">...</span></a>-->
+<!--            <a><strong data-i18n="cert.name">...</strong> <span data-i18n="cert.year">...</span></a>-->
+<!--            <a><strong data-i18n="cert.name">...</strong> <span data-i18n="cert.year">...</span></a>-->
+        </ul>
+    </section>
+
+    <div class="portfolio-box">
+        <div class="portfolio-text">
+            <strong data-i18n="portfolio.title">Project Portfolio & Documentation</strong><br>
+            <span data-i18n="portfolio.description">Visual previews and detailed architectural roadmaps are available online.</span>
+        </div>
+        <div class="portfolio-links">
+            <a href="https://filipszemraj.github.io/websitePortfolio/" target="_blank" data-i18n="portfolio.link.portfolio">→ View Live Portfolio</a>
+            <a href="https://www.linkedin.com/in/filip-szemraj/overlay/Project/1895855869/treasury/?profileId=ACoAAEySZEQBye78VkRnrj3tITY_u8VZbq4ulZk" target="_blank" data-i18n="portfolio.link.thesis">→ Thesis on LinkedIn</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
