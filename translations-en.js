@@ -7,8 +7,9 @@ const translationsEN = {
         email: "filip.szemraj@onet.pl"
     },
 
-    summary: "Software developer with a strong interest in distributed and scalable systems, which began with my engineering thesis and has been deepening through professional work and deliberate self-study. Experienced in full-stack Java/Angular development, currently focusing on architecture patterns (DDD, Event-Driven) and frontend scalability strategies, including monorepos with low coupling and well-defined module boundaries.",
+    summary: "Software developer with a strong interest in distributed and scalable systems. This passion began with my engineering thesis and has been deepening through professional work and deliberate self-study. Experienced in full-stack Java/Angular development, currently focusing on architecture patterns (DDD, Event-Driven) and frontend scalability strategies, including monorepos with low coupling and well-defined module boundaries.",
 
+    //    summary: "Software developer with a focus on building scalable systems within the Java/Spring and Angular ecosystems. Proactive in identifying technical debt and proposing modern architectural solutions, such as Monorepo structures and DDD principles. Effectively combines academic background with commercial experience to drive refactoring initiatives and improve code maintainability.",
     education: {
         title: "Education",
         entries: [
@@ -20,7 +21,7 @@ const translationsEN = {
             {
                 period: "09/2017 – 06/2021",
                 school: "Technical Secondary School No. 3, Ostrowiec Świętokrzyski",
-                detail: "Internship at Teva Operations Poland"
+                detail: "IT Technician profile. Completed curricular internship at Teva Operations Poland."
             }
         ]
     },
@@ -38,66 +39,118 @@ const translationsEN = {
             company: "KAELMO",
             period: "Mar 2025 – Present",
             details: [
-                "Started as a Junior Developer responsible for maintaining and refactoring an existing Angular codebase and implementing feature improvements in the Java backend.",
-                "Gradually shifted focus to mobile development using Ionic and took responsibility for frontend architecture decisions.",
-                "Currently doing a refactor to extract business logic into reusable libraries within an Nx monorepo."
+                "Began by maintaining and refactoring legacy Angular application and implementing new features on the Java backend, ensuring system stability during critical updates.",
+                "Gradually shifted focus to mobile development using Ionic and influencing the architecture.",
+                "Initiated and currently responsible for the technical execution of the migration to an Nx Monorepo architecture, which involves extracting business logic into reusable libraries. Based on a successful internal Proof of Concept."
+                //"Active contributor in the full software development lifecycle, primarily focusing on refactoring legacy Angular application and extending Java backend capabilities.",
+                //"Solely responsible for the technical execution of a migration to an Nx Monorepo architecture, aimed at unifying development for future mobile applications.",
+                //"Collaborating closely with legacy code authors to reverse-engineer business logic and reimplement it within a modular, type-safe library ecosystem.",
+                //"Introduced and implemented Domain-Driven Design (DDD) concepts to better align the codebase with complex business requirements."
+                //'"Started as a Junior Developer responsible for maintaining and refactoring an existing Angular codebase and implementing feature improvements in the Java backend.",
+                //"Gradually shifted focus to mobile development using Ionic and took responsibility for frontend architecture decisions.",
+                //"Currently doing a refactor to extract business logic into reusable libraries within an Nx monorepo."
             ]
         }
     ],
 
     projects: [
+
+        // {
+        //     title: "Frontend Monorepo Refactoring",
+        //     period: "Nov 2025 – Present",
+        //     link: null,
+        //     jobRelated: true,
+        //     paragraphs: [
+        //         "Proposed a transition to a Monorepo strategy to handle the company's planned expansion into multiple mobile apps sharing similar logic.",
+        //         "Adapted a self-developed Proof of Concept structure to standardize Docker configurations, asset management, and maintenance across the organization.",
+        //         "Established a reusable code foundation (Shared Libraries), significantly reducing setup time for new frontend instances and decoupling business logic from UI frameworks using Ionic and Angular."
+        //         //"Extracting business logic into reusable libraries within an Angular monorepo to migrate existing applications and standardize the development of future instances and the maintenance of current applications across the company ecosystem."
+        //     ],
+        //     tags: ["Angular", "Nx", "SignalStore", "RxJs", "Ionic"]
+        // },
         {
-            title: "Multitenant E-commerce Platform (ISR System)",
-            period: "Aug 2025 – Present",
-            paragraphs: [
-                "I started this project with the goal of building a multitenant platform based on Incremental Static Regeneration (ISR). I designed an infrastructure with an Nginx gateway acting as a proxy: in the main scenario it serves cached static files directly from a CDN, while also forwarding REST API requests to a Spring Boot instance.",
-                "The platform includes an orchestration mechanism that can trigger regeneration of tenant content. In the happy path, when an administrator updates content, scaled-to-zero Angular SSR renderer instances running on Node.js are started to generate new static files, which are then pushed to the CDN by the orchestrator. All components are containerized.",
-                "Later, I came up on Domain-Driven Design (DDD) and reconsidered the goal: instead, I now focus on creating the first platform module covering flash-sale–type logic for the frontends, maybe converting it to SaaS product. I want this module to be DDD-based to avoid costly design mistakes.",
-                "This project also became the foundation for a monorepo approach in my company. I learned and validated the shared-dependencies concept here, proposed it as a solution, and it is now used in a project that I currently lead."
-            ]
-        },
-        {
-            title: "Frontend Monorepo Refactoring",
-            period: "Nov 2025 – Present",
-            paragraphs: [
-                "Extracting business logic into reusable libraries within an Angular monorepo to migrate existing applications and standardize the development of future instances and the maintenance of current applications across the company ecosystem."
-            ]
-        },
-        {
-            title: "End-to-End Strava Integration System",
+            title: "End-to-End Strava Integration",
             period: "Jun 2025 – Jul 2025",
+            link: null,
+            jobRelated: true,
             paragraphs: [
-                "Extending the full-cycle activity tracking integration. Implemented a thread-safe elastic pool of HTTP clients using ReentrantLock and leveraged Swagger Codegen for API consistency."
-            ]
+                "Extending the full-cycle activity tracking integration, expanding support from 4 to 50 activities.",
+                "Implemented thread-safe resiliency patterns including automatic retries and rate-limit handling to ensure data consistency during external API outages.",
+                "Leveraged Swagger Codegen to ensure API contract compliance between the backend and external services and to keep the solution easily extensible for future activities.",
+                "Used Liquibase changelogs to migrate both database schema and data to a new naming convention supporting an expanded set of activities and additional scoring mechanism."
+                //"Extending the full-cycle activity tracking integration. Developed a robust Strava API integration module handling OAuth2 token lifecycle, rate limiting strategies, and automatic retry mechanisms for network resilience."
+            ],
+            tags: ["Java", "Spring Boot", "Angular", "Ionic", "Swagger Codegen", "MariaDB", "SQL"]
+
         },
         {
             title: "Blockchain Supply Chain System (Bachelor Thesis)",
             period: "Oct 2024 – Feb 2025",
+            link: "https://github.com/FilipSzemraj/blockchain-consortium",
+            jobRelated: false,
             paragraphs: [
                 "Built a private permissioned blockchain consortium (Hyperledger Fabric) to automate cash flow and ensure goods provenance. Implemented Smart Contracts, MSP, Raft consensus, and a decentralized web application."
-            ]
-        }
+            ],
+            tags: ["Hyperledger Fabric", "Smart Contracts (Chaincode)", "Java", "React", "Docker", "REST API", "gRPC", "Bash", "PKI"]
+        },
+        {
+            title: "Multitenant Platform",
+            period: "Aug 2025 – Present",
+            link: "https://github.com/FilipSzemraj/isr-platform",
+            jobRelated: false,
+            paragraphs: [
+                "I am exploring here scalable architecture approaches, Server Side Rendering, Monorepo, and more.",
+                "Prototyped an orchestration mechanism using Spring Boot to trigger on-demand content regeneration of Angular SSR instances based on tenant updates. Integration with a proxy and CDN allows for Incremental Server Rendering within the Angular ecosystem.",
+                "Currently implementing a DDD-based core module focused on flash-sale domain logic.",
+                "This project served as a testing ground for the Monorepo approach (Nx). The patterns validated here (shared libraries, decoupling UI from logic) were subsequently proposed and adopted in my commercial work at KAELMO."
+                //"Designed a scalable architecture leveraging Nginx as a reverse proxy to serve cached static content generated via Incremental Static Regeneration (ISR).",
+                //"Implemented an orchestration mechanism using Spring Boot to trigger on-demand content regeneration of Angular SSR instances based on tenant updates.",
+                //"Currently working on the core module to follow DDD patterns, treating it as a candidate for a SaaS.\n"
+                //"I started this project with the goal of building a multitenant platform based on Incremental Static Regeneration (ISR). I designed an infrastructure with an Nginx gateway acting as a proxy: in the main scenario it serves cached static files directly from a CDN, while also forwarding REST API requests to a Spring Boot instance.",
+                //"The platform includes an orchestration mechanism that can trigger regeneration of tenant content. In the happy path, when an administrator updates content, scaled-to-zero Angular SSR renderer instances running on Node.js are started to generate new static files, which are then pushed to the CDN by the orchestrator. All components are containerized.",
+                //"Later, I came up on Domain-Driven Design (DDD) and reconsidered the goal: instead, I now focus on creating the first platform module covering flash-sale–type logic for the frontends, maybe converting it to SaaS product. I want this module to be DDD-based to avoid costly design mistakes.",
+                //"This project also became the foundation for a monorepo approach in my company. I learned and validated the shared-dependencies concept here, proposed it as a solution, and it is now used in a project that I currently lead."
+            ],
+            tags: ["Java", "Spring Boot", "Docker", "Nx", "Nginx", "DDD", "Angular"]
+        },
+        {
+            title: "Many more projects available on Github",
+            period: "",
+            link: "https://github.com/FilipSzemraj",
+            jobRelated: false,
+            paragraphs: [
+                "For example: a Java-based <a href='https://github.com/FilipSzemraj/Texas-Holdem-Poker'>Texas Hold'em Poker</a> game, a React <a href='https://github.com/FilipSzemraj/online-shop'>website</a> using GSAP animations and Java backend to calculate the cost of 3D-printed parts, and a <a href='https://filipszemraj.github.io/websitePortfolio/'>web portfolio</a> built with React and GSAP."
+               //"Designed a scalable architecture leveraging Nginx as a reverse proxy to serve cached static content generated via Incremental Static Regeneration (ISR).",
+                //"Implemented an orchestration mechanism using Spring Boot to trigger on-demand content regeneration of Angular SSR instances based on tenant updates.",
+                //"Currently working on the core module to follow DDD patterns, treating it as a candidate for a SaaS.\n"
+                //"I started this project with the goal of building a multitenant platform based on Incremental Static Regeneration (ISR). I designed an infrastructure with an Nginx gateway acting as a proxy: in the main scenario it serves cached static files directly from a CDN, while also forwarding REST API requests to a Spring Boot instance.",
+                //"The platform includes an orchestration mechanism that can trigger regeneration of tenant content. In the happy path, when an administrator updates content, scaled-to-zero Angular SSR renderer instances running on Node.js are started to generate new static files, which are then pushed to the CDN by the orchestrator. All components are containerized.",
+                //"Later, I came up on Domain-Driven Design (DDD) and reconsidered the goal: instead, I now focus on creating the first platform module covering flash-sale–type logic for the frontends, maybe converting it to SaaS product. I want this module to be DDD-based to avoid costly design mistakes.",
+                //"This project also became the foundation for a monorepo approach in my company. I learned and validated the shared-dependencies concept here, proposed it as a solution, and it is now used in a project that I currently lead."
+            ],
+            tags: ["Java", "JavaFX", "Spring Boot", "React", "GSAP", "Docker"]
+        },
     ],
 
     skills: {
-        jobRelated: "Kaelmo related",
+        jobRelated: "Commercial",
         categories: [
             {
                 title: "Languages & Frameworks",
-                content: "Java, Spring Boot, Angular, TypeScript, Ionic, RxJs, SignalStore, Hibernate, SQL, React."
+                content: "Java, Spring Boot, Angular, TypeScript, Ionic, RxJs, NgRx (SignalStore), Hibernate, SQL, React."
             },
             {
                 title: "Architecture & Concepts",
-                content: "REST, DDD, CQRS, Event-Driven Architecture, Microservice principles, Monorepo (Nx), Module Federation."
+                content: "Monorepo (Nx), REST, Microservice Principles, Domain-Driven Design (DDD) Principles, Event-Driven Architecture."
             },
             {
-                title: "DevOps & Scripting",
+                title: "DevOps & Tools",
                 content: "Docker, Nginx, Git, Linux, Bash, Python, Liquibase, Swagger Codegen."
             },
             {
                 title: "Blockchain & Security",
-                content: "Hyperledger Fabric, Smart Contracts, Consensus Algorithms (Raft), PKI, JWT, OAuth2."
-            }
+                content: "Hyperledger Fabric, Smart Contracts (Chaincode), Consensus Algorithms (Raft), PKI, JWT, OAuth2."
+            },
         ]
     },
 

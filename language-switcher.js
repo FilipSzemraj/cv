@@ -1,142 +1,3 @@
-function applyTranslations() {
-    const lang = getLanguageFromURL();
-    const t = getTranslations(lang);
-
-    // HEADER
-    document.querySelector('[data-i18n="header.title"]').textContent = t.header.title;
-    document.querySelector('[data-i18n="header.location"]').textContent = t.header.location;
-
-    // SUMMARY
-    const summaryEl = document.querySelector('[data-i18n="summary"]');
-    summaryEl.textContent = t.summary;
-
-    // =========================
-    // EDUCATION
-    // =========================
-    const eduBox = document.querySelector('.education-box');
-    eduBox.innerHTML = '';
-
-    t.education.entries.forEach((edu, i) => {
-        const div = document.createElement('div');
-        div.className = 'edu-item';
-        if (i > 0) {
-            div.style.marginTop = '8px';
-            div.style.borderTop = '1px solid #e2e8f0';
-            div.style.paddingTop = '8px';
-        }
-
-        div.innerHTML = `
-            <div class="edu-header">${edu.period}</div>
-            <span class="edu-school">${edu.school}</span>
-            <span class="edu-detail">${edu.detail}</span>
-        `;
-
-        eduBox.appendChild(div);
-    });
-
-    // =========================
-    // SECTION TITLES
-    // =========================
-    document.querySelector('[data-i18n="sections.experience"]').textContent = t.sections.experience;
-    document.querySelector('[data-i18n="sections.projects"]').textContent = t.sections.projects;
-    document.querySelector('[data-i18n="sections.skills"]').textContent = t.sections.skills;
-    document.querySelector('[data-i18n="sections.certifications"]').textContent = t.sections.certifications;
-
-    // =========================
-    // EXPERIENCE
-    // =========================
-    const expContainer = document.querySelector('#experience');
-    expContainer.querySelectorAll('.entry').forEach(e => e.remove());
-
-    t.experience.forEach(exp => {
-        const entry = document.createElement('div');
-        entry.className = 'entry';
-
-        entry.innerHTML = `
-            <div class="entry-header">
-                <div>
-                    <span class="entry-title">${exp.title}</span>
-                    <span class="entry-company"> · ${exp.company}</span>
-                </div>
-                <span class="entry-meta">${exp.period}</span>
-            </div>
-
-            <ul class="details">
-                ${exp.details.map(d => `<li>${d}</li>`).join('')}
-            </ul>
-        `;
-
-        expContainer.appendChild(entry);
-    });
-
-    // =========================
-    // PROJECTS
-    // =========================
-    const projContainer = document.querySelector('#projects');
-    projContainer.querySelectorAll('.entry').forEach(e => e.remove());
-
-    t.projects.forEach(project => {
-        const entry = document.createElement('div');
-        entry.className = 'entry';
-
-        entry.innerHTML = `
-            <div class="entry-header">
-                <span class="entry-title">${project.title}</span>
-                <span class="entry-meta">${project.period}</span>
-            </div>
-
-            ${project.paragraphs.map(p => `<p>${p}</p>`).join('')}
-        `;
-
-        projContainer.appendChild(entry);
-    });
-
-    // =========================
-    // SKILLS
-    // =========================
-    const skillsGrid = document.querySelector('.skills-grid');
-    skillsGrid.innerHTML = '';
-
-    t.skills.categories.forEach(cat => {
-        const div = document.createElement('div');
-        div.className = 'skill-category';
-
-        div.innerHTML = `
-            <strong>${cat.title}</strong>
-            <span>${cat.content}</span>
-        `;
-
-        skillsGrid.appendChild(div);
-    });
-
-    // =========================
-    // CERTIFICATIONS (jak masz)
-    // =========================
-    const certList = document.querySelector('.certs-list');
-    certList.innerHTML = '';
-
-    t.certifications.forEach(cert => {
-        const li = document.createElement('li');
-
-        li.innerHTML = `
-            <a href="${cert.link}" target="_blank">
-                <strong>${cert.name}</strong>
-                <span>${cert.year}</span>
-            </a>
-        `;
-
-        certList.appendChild(li);
-    });
-
-    // =========================
-    // PORTFOLIO
-    // =========================
-    document.querySelector('[data-i18n="portfolio.title"]').textContent = t.portfolio.title;
-    document.querySelector('[data-i18n="portfolio.description"]').textContent = t.portfolio.description;
-    document.querySelector('[data-i18n="portfolio.link.portfolio"]').textContent = t.portfolio.links.portfolio;
-    document.querySelector('[data-i18n="portfolio.link.thesis"]').textContent = t.portfolio.links.thesis;
-}
-/*
 // Language Switcher for CV
 (function() {
     'use strict';
@@ -166,13 +27,25 @@ function applyTranslations() {
         document.querySelector('[data-i18n="summary"]').textContent = t.summary;
 
         // Education
-        const eduItems = document.querySelectorAll('.edu-item');
-        eduItems.forEach((item, index) => {
-            if (t.education.entries[index]) {
-                item.querySelector('[data-i18n="education.period"]').textContent = t.education.entries[index].period;
-                item.querySelector('[data-i18n="education.school"]').textContent = t.education.entries[index].school;
-                item.querySelector('[data-i18n="education.detail"]').textContent = t.education.entries[index].detail;
+        const educationBox = document.querySelector('.education-box');
+        educationBox.innerHTML = '';
+
+        t.education.entries.forEach((entry, index) => {
+            const eduItem = document.createElement('div');
+            eduItem.className = 'edu-item';
+            if (index > 0) {
+                eduItem.style.marginTop = '8px';
+                eduItem.style.borderTop = '1px solid #e2e8f0';
+                eduItem.style.paddingTop = '8px';
             }
+
+            eduItem.innerHTML = `
+                <div class="edu-header">${entry.period}</div>
+                <span class="edu-school">${entry.school}</span>
+                <span class="edu-detail">${entry.detail}</span>
+            `;
+
+            educationBox.appendChild(eduItem);
         });
 
         // Section titles
@@ -182,61 +55,84 @@ function applyTranslations() {
         document.querySelector('[data-i18n="sections.certifications"]').textContent = t.sections.certifications;
 
         // Experience
-        const expEntries = document.querySelectorAll('#experience .entry');
-        expEntries.forEach((entry, index) => {
-            if (t.experience[index]) {
-                entry.querySelector('[data-i18n="experience.title"]').textContent = t.experience[index].title;
-                entry.querySelector('[data-i18n="experience.period"]').textContent = t.experience[index].period;
+        const experienceSection = document.querySelector('#experience');
+        const experienceContainer = experienceSection.querySelector('.experience-container');
+        experienceContainer.innerHTML = '';
 
-                const detailsList = entry.querySelectorAll('[data-i18n^="experience.detail"]');
-                detailsList.forEach((detail, detailIndex) => {
-                    if (t.experience[index].details[detailIndex]) {
-                        detail.textContent = t.experience[index].details[detailIndex];
-                    }
-                });
-            }
+        t.experience.forEach(exp => {
+            const entry = document.createElement('div');
+            entry.className = 'entry';
+
+            const detailsHTML = exp.details.map(detail => `<li>${detail}</li>`).join('');
+
+            entry.innerHTML = `
+                <div class="entry-header">
+                    <div><span class="entry-title">${exp.title}</span><span class="entry-company"> · ${exp.company}</span></div>
+                    <span class="entry-meta">${exp.period}</span>
+                </div>
+                <ul class="details">
+                    ${detailsHTML}
+                </ul>
+                <div class="tags-container">
+                    <span class="tag">Java</span> <span class="tag">Spring Boot</span> <span class="tag">Angular</span> <span class="tag">TypeScript</span> <span class="tag">RxJs</span> <span class="tag">Ionic</span> <span class="tag">Git</span> <span class="tag">Linux</span> <span class="tag">Feature Toggles</span> <span class="tag">Liquibase</span> <span class="tag">Vitest</span>
+                </div>
+            `;
+
+            experienceContainer.appendChild(entry);
         });
 
         // Projects
-        const projectEntries = document.querySelectorAll('#projects .entry');
-        projectEntries.forEach((entry, index) => {
-            if (t.projects[index]) {
-                entry.querySelector('[data-i18n="project.title"]').textContent = t.projects[index].title;
-                entry.querySelector('[data-i18n="project.period"]').textContent = t.projects[index].period;
+        const projectsSection = document.querySelector('#projects');
+        const projectsContainer = projectsSection.querySelector('.projects-container');
+        projectsContainer.innerHTML = '';
 
-                const paragraphs = entry.querySelectorAll('[data-i18n^="project.paragraph"]');
-                paragraphs.forEach((p, pIndex) => {
-                    if (t.projects[index].paragraphs[pIndex]) {
-                        p.textContent = t.projects[index].paragraphs[pIndex];
-                    }
-                });
+        t.projects.forEach((project, index) => {
+            const entry = document.createElement('div');
+            entry.className = 'entry';
+            // if (index === 3) {
+            //     entry.classList.add('page-break-before');
+            // }
 
-                const jobRelatedTag = entry.querySelector('[data-i18n="skills.jobRelated"]');
-                if (jobRelatedTag) {
-                    jobRelatedTag.textContent = t.skills.jobRelated;
-                }
-            }
+            const paragraphsHTML = project.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+            // Determine if this is a job-related project (index 1 and 2 in the current structure)
+            const jobRelatedTag = project.jobRelated ? `<span class="tag tag-job">${t.skills.jobRelated}</span>` : '';
+
+            // Get project-specific tags if available
+            const tagsHTML = project.tags ? project.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ') : '';
+
+            entry.innerHTML = `
+                <div class="entry-header">
+                    <span class="entry-title">${project.link ? `<a href="${project.link}">${project.title}</a>` : project.title}</span>
+                    ${jobRelatedTag}
+                    <span class="entry-meta">${project.period}</span>
+                </div>
+                ${paragraphsHTML}
+                <div class="tags-container">
+                    ${tagsHTML}
+                </div>
+            `;
+
+            projectsContainer.appendChild(entry);
         });
-
 
         // Skills
-        const skillCategories = document.querySelectorAll('.skill-category');
-        skillCategories.forEach((category, index) => {
-            if (t.skills.categories[index]) {
-                category.querySelector('[data-i18n="skill.title"]').textContent = t.skills.categories[index].title;
-                category.querySelector('[data-i18n="skill.content"]').textContent = t.skills.categories[index].content;
-            }
+        const skillsGrid = document.querySelector('.skills-grid');
+        skillsGrid.innerHTML = '';
+
+        t.skills.categories.forEach(category => {
+            const skillCategory = document.createElement('div');
+            skillCategory.className = 'skill-category';
+
+            skillCategory.innerHTML = `
+                <strong>${category.title}</strong>
+                <span>${category.content}</span>
+            `;
+
+            skillsGrid.appendChild(skillCategory);
         });
 
-        // // Certifications
-        // const certItems = document.querySelectorAll('.certs-list a');
-        // certItems.forEach((cert, index) => {
-        //     if (t.certifications[index]) {
-        //         cert.querySelector('[data-i18n="cert.name"]').textContent = t.certifications[index].name;
-        //         cert.querySelector('[data-i18n="cert.year"]').textContent = t.certifications[index].year;
-        //         cert.querySelector('[data-i18n="cert.year"]').href = t.certifications[index].link;
-        //     }
-        // });
+        // Certifications
         const certList = document.querySelector('.certs-list');
         certList.innerHTML = '';
 
@@ -260,11 +156,31 @@ function applyTranslations() {
         document.querySelector('[data-i18n="portfolio.link.thesis"]').textContent = t.portfolio.links.thesis;
     }
 
+    // Highlight the active language button
+    function updateLangButtons() {
+        const lang = getLanguageFromURL();
+        var btnEn = document.getElementById('lang-en');
+        var btnPl = document.getElementById('lang-pl');
+        if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+        if (btnPl) btnPl.classList.toggle('active', lang === 'pl');
+    }
+
+    // Exposed globally so the onclick handler can call it
+    window.switchLang = function(lang) {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+    };
+
     // Run when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyTranslations);
-    } else {
+    function init() {
         applyTranslations();
+        updateLangButtons();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
 })();
-*/
